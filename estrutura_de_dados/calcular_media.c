@@ -1,5 +1,14 @@
 #include <stdio.h>
 
+/*
+Crie um programa que receba quatro termos inseridos pelo usuário
+correspondente as notas do aluno: nota1, nota2, nota3 e nota4
+Calcule a média aritmética  das notas. 
+Depois avalie a média e imprima:
+Caso a média seja menor que 6 exibir a mensagem REPROVADO
+Caso a média seja maior ou igual 6 que exibir a mensagem APROVADO
+*/
+
 int main() {
     float result1, result2, result3, result4, mean;
 

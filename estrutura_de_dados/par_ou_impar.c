@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/* 
+Faça um programa que lê um número inteiro e diga se
+ele é par ou ímpar, e se ele é positivo ou negativo
+*/
+
 int main() {
     int num;
 

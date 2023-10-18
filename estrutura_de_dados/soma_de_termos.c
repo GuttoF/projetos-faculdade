@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+/*
+Crie um programa que receba um valor inteiro "n"
+e gere uma sequência de números na ordem DECRESCENTE
+com o número de termos informados. 
+Ao final exibir a soma de todos os termos da sequência
+Usar FOR
+*/
+
 int main() {
     int n, i, limit, count = 0;
 
@@ -14,7 +22,7 @@ int main() {
         count += i;
     }
 
-    printf("\nS: %d\n", count);
+    printf("\nSum: %d\n", count);
 
     return 0;
 }

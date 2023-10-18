@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+/*
+Crie um programa que receba um valor inteiro "n"
+e gere uma sequência de números na ordem crescente
+com o número de termos informados. 
+Usar WHILE
+*/
+
+
 int main() {
     int n, i = 1, limit;
 

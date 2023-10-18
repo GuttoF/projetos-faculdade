@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+/*
+Fazer um programa que lê o preço de um produto e aumenta seu
+preço em 20% se ele for menor que 100 e em 10% se ele for maior ou igual a
+100. Imprimir o valor original, o percentual e o valor final.
+*/
+
 void raise_price(float price){
     float percent;
     if (price < 100) {

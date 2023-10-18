@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+/*
+Fazer um programa que leia 2 valores e um operador (+,-,*,/)
+Imprimir o resultado da expressão:
+ <valor 1> <operador> <valor 2>
+*/
+
 int main(){
     float value1,value2, result;
     char operator;
