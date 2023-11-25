@@ -1,13 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-// Function to swap two elements
+// Swap two integers
+// @param xp pointer to the first element
+// @param yp pointer to the second element
 void swap(int *xp, int *yp) {
     int temp = *xp;
     *xp = *yp;
     *yp = temp;
 }
 
-// Bubble sort algorithm
+// Bubble sort
 void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -18,7 +22,7 @@ void bubbleSort(int arr[], int n) {
     }
 }
 
-// Selection sort algorithm
+// Selection sort
 void selectionSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         int minIndex = i;
@@ -31,7 +35,7 @@ void selectionSort(int arr[], int n) {
     }
 }
 
-// Insertion sort algorithm
+// Insertion sort
 void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; i++) {
         int key = arr[i];
@@ -45,8 +49,23 @@ void insertionSort(int arr[], int n) {
 }
 
 int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int n;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Randomizer
+    srand(time(NULL));
+
+    // Generate random numbers
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = rand() % 100;
+    }
+    
+
 
     printf("Array before sorting:\n");
     for (int i = 0; i < n; i++) {
@@ -54,11 +73,26 @@ int main() {
     }
     printf("\n");
 
+    int choice;
 
+    do {
+        printf("Enter your choice: \n1-BubbleSort:\n2-SelectionSort:\n3-InsertSort:");
+        scanf("%d", &choice);
 
-    bubbleSort(arr, n);
-    //selectionSort(arr, n);
-    //insertionSort(arr, n);
+        switch (choice) {
+            case 1:
+                bubbleSort(arr, n);
+                break;
+            case 2:
+                selectionSort(arr, n);
+                break;
+            case 3:
+                insertionSort(arr, n);
+                break;
+            default:
+                printf("Invalid choice\n");
+        }
+    } while(choice < 1 || choice > 3);
 
     printf("Array after sorting:\n");
     for (int i = 0; i < n; i++) {
