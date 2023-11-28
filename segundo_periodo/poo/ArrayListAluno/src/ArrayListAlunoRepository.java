@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Iterator;
 import java.util.ArrayList;
 
 public class ArrayListAlunoRepository implements iAlunoRepository {
@@ -13,15 +12,9 @@ public class ArrayListAlunoRepository implements iAlunoRepository {
         alunos.add(aluno);
     }
 
+    // Removendo iterator
     public void remover(Aluno aluno) {
-        Iterator<Aluno> iterator = alunos.iterator();
-        while (iterator.hasNext()) {
-            Aluno alunoAtual = iterator.next();
-            if (alunoAtual.getNome().equals(aluno.getNome())) {
-                iterator.remove();
-                break;
-            }
-        }
+        alunos.remove(aluno);
     }
 
     public Aluno buscar(String nome) {
@@ -38,3 +31,4 @@ public class ArrayListAlunoRepository implements iAlunoRepository {
     }
     
 }
+
