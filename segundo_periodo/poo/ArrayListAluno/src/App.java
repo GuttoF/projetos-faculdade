@@ -24,8 +24,8 @@ public class App {
         Aluno alunoBusca = repo.buscar("Bia");
         System.out.println("Aluno buscado: " + alunoBusca.getNome() + " e " + alunoBusca.getMatricula());
 
-        // Remover um aluno da lista
-        Aluno alunoRemover = new Aluno("Bia", "12222");
+        // Remover um aluno da lista anterior
+        Aluno alunoRemover = repo.buscar("Bia");
         repo.remover(alunoRemover);
 
         // Listar os alunos restantes
