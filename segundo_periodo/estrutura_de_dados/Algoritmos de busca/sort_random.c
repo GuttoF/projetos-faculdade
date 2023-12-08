@@ -48,6 +48,34 @@ void insertionSort(int arr[], int n) {
     }
 }
 
+// Quick sort
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j <= high - 1; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(&arr[i], &arr[j]);
+            }
+        }
+        swap(&arr[i + 1], &arr[high]);
+
+        int partitionIndex = i + 1;
+
+        quickSort(arr, low, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, high);
+    }
+}
+
+// binary search tree
+
+
+// binary sort
+
+
+// Main function
 int main() {
     int n;
 
@@ -60,12 +88,9 @@ int main() {
     srand(time(NULL));
 
     // Generate random numbers
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         arr[i] = rand() % 100;
     }
-    
-
 
     printf("Array before sorting:\n");
     for (int i = 0; i < n; i++) {
@@ -76,7 +101,7 @@ int main() {
     int choice;
 
     do {
-        printf("Enter your choice: \n1-BubbleSort:\n2-SelectionSort:\n3-InsertSort:");
+        printf("Enter your choice: \n1-BubbleSort:\n2-SelectionSort:\n3-InsertSort:\n4-QuickSort:");
         scanf("%d", &choice);
 
         switch (choice) {
@@ -89,10 +114,13 @@ int main() {
             case 3:
                 insertionSort(arr, n);
                 break;
+            case 4:
+                quickSort(arr, 0, n - 1);
+                break;
             default:
                 printf("Invalid choice\n");
         }
-    } while(choice < 1 || choice > 3);
+    } while (choice < 1 || choice > 4);
 
     printf("Array after sorting:\n");
     for (int i = 0; i < n; i++) {
