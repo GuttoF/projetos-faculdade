@@ -2,65 +2,68 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 )
 
-func main() {
+type Node struct {
+	data  int
+	left  *Node
+	right *Node
+}
 
-	var arraySize int
-	var searchValue int
+func NewNode(data int) *Node {
+	return &Node{data: data}
+}
 
-	fmt.Println("Digite o tamanho do array: ")
-	fmt.Scan(&arraySize)
-
-	fmt.Println("Digite o valor que deseja buscar: ")
-	fmt.Scan(&searchValue)
-
-	array := generateArray(arraySize)
-
-	fmt.Println("Array gerado: ", array)
-
-	result := binarySearch(array, searchValue)
-
-	if result == -1 {
-		fmt.Println("Valor não encontrado")
+func Insert(node *Node, data int) *Node {
+	if node == nil {
+		return NewNode(data)
+	}
+	if data < node.data {
+		node.left = Insert(node.left, data)
 	} else {
-		fmt.Println("Valor encontrado na posição: ", result)
+		node.right = Insert(node.right, data)
 	}
-
+	return node
 }
 
-func generateArray(size int) []int {
-
-	rand.Seed(time.Now().UnixNano())
-
-	var array []int
-
-	for i := 0; i < size; i++ {
-		array = append(array, rand.Intn(100))
+func Depth(node *Node) int {
+	if node == nil {
+		return 0
 	}
-
-	return array
+	leftDepth := Depth(node.left)
+	rightDepth := Depth(node.right)
+	if leftDepth > rightDepth {
+		return leftDepth + 1
+	} else {
+		return rightDepth + 1
+	}
 }
 
-func binarySearch(array []int, searchValue int) int {
-
-	var left int = 0
-	var right int = len(array) - 1
-
-	for left <= right {
-
-		var middle int = (left + right) / 2
-
-		if array[middle] == searchValue {
-			return middle
-		} else if array[middle] < searchValue {
-			left = middle + 1
-		} else {
-			right = middle - 1
+func PrintLeaves(node *Node) {
+	if node != nil {
+		if node.left == nil && node.right == nil {
+			fmt.Print(node.data, " ")
 		}
+		PrintLeaves(node.left)
+		PrintLeaves(node.right)
 	}
+}
 
-	return -1
+func main() {
+	var root *Node
+	root = Insert(root, 200)
+	Insert(root, 450)
+	Insert(root, 123)
+	Insert(root, 52)
+	Insert(root, 133)
+	Insert(root, 321)
+	Insert(root, 422)
+	Insert(root, 523)
+	Insert(root, 36)
+	Insert(root, 64)
+
+	fmt.Println("Profundidade da árvore:", Depth(root))
+	fmt.Print("Nós folha: ")
+	PrintLeaves(root)
+	fmt.Println()
 }

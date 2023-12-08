@@ -1,6 +1,6 @@
 # include <stdio.h>
 
-# define MAXSIZE 100
+# define MAXSIZE 10
 
 int iterms[MAXSIZE];
 int front = -1;
@@ -56,9 +56,12 @@ void display() {
 }
 
 int main() {
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
+    enqueue(64);
+    enqueue(25);
+    enqueue(12);
+    enqueue(22);
+    enqueue(11);
+    enqueue(9);
 
     printf("Desafileirando...\n");
     printf("%d\n", dequeue());

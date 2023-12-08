@@ -1,15 +1,13 @@
-// Esse algoritmo é igual a Decision Tree só que lá utiliza-se matrizes e pra variáveis não numéricas é realizado um cálculo que pode ser ou entropia da informação ou ganho de informação ou critério de Gini
-
 #include <stdio.h>
 #include <stdlib.h>
 
-// Definindo a estrutura do nó
+
 struct node {
     int data;
     struct node *left, *right;
 };
 
-// Função para criar um novo nó
+
 struct node* newNode(int data) {
     struct node* node = (struct node*)malloc(sizeof(struct node));
     node->data = data;
@@ -17,7 +15,6 @@ struct node* newNode(int data) {
     return node;
 }
 
-// Função para inserir um novo nó na árvore
 struct node* insert(struct node* node, int data) {
     if (node == NULL) return newNode(data);
     if (data < node->data) node->left  = insert(node->left, data);
@@ -25,7 +22,6 @@ struct node* insert(struct node* node, int data) {
     return node;
 }
 
-// Função para calcular a profundidade da árvore
 int depth(struct node* node) {
     if (node == NULL) return 0;
     else {
@@ -36,7 +32,7 @@ int depth(struct node* node) {
     }
 }
 
-// Função para encontrar e imprimir os nós folha
+
 void printLeaves(struct node* node) {
     if (node == NULL) return;
     if (node->left == NULL && node->right == NULL) printf("%d ", node->data);
