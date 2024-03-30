@@ -1,6 +1,8 @@
 import math
 from collections import Counter
 
+import matplotlib.pyplot as plt
+
 
 class EstatisticaDescritiva:
     """
@@ -21,6 +23,36 @@ class EstatisticaDescritiva:
             list: The ordered list of numbers.
         """
         return self.numbers
+
+    def semi_range(self):
+        """
+        Calculates the semi-range of the numbers.
+
+        Returns:
+            float: The semi-range of the numbers.
+        """
+        max_value = max(self.numbers)
+        min_value = min(self.numbers)
+        semi_range = (max_value - min_value) / 2
+        print(
+            f"Cálculo da semi-amplitude:\n1. Valor máximo: {max_value}\n2. Valor mínimo: {min_value}\n3. Semi-amplitude: {semi_range}"
+        )
+        return semi_range
+
+    def geometric_mean(self):
+        """
+        Calculates the geometric mean of the numbers.
+
+        Returns:
+            float: The geometric mean of the numbers.
+        """
+        product = math.prod(self.numbers)
+        n = len(self.numbers)
+        geometric_mean = product ** (1 / n)
+        print(
+            f"Cálculo da média geométrica:\n1. Produto dos números: {product}\n2. Quantidade de números: {n}\n3. Média geométrica: {geometric_mean}"
+        )
+        return geometric_mean
 
     def mean(self):
         """
@@ -138,3 +170,39 @@ class EstatisticaDescritiva:
 
         print("Determinação da simetria:\n" + description)
         return description
+
+    def skewness(self):
+        """
+        Calculates the skewness of the numbers.
+
+        Returns:
+            float: The skewness of the numbers.
+        """
+        mean = self.mean()
+        std_dev = self.std()
+        n = len(self.numbers)
+        skewness = (n / ((n - 1) * (n - 2))) * sum(
+            ((x - mean) / std_dev) ** 3 for x in self.numbers
+        )
+
+        return print(f"Cálculo da assimetria: {round(skewness, 3)}")
+
+    def histogram(
+        self, bins=10, title="Histograma", xlabel="Valores", ylabel="Frequência"
+    ):
+        """
+        Generates and displays a histogram of the numbers.
+
+        Parameters:
+            bins (int): Number of bins in the histogram.
+            title (str): Title of the histogram.
+            xlabel (str): Label for the x-axis.
+            ylabel (str): Label for the y-axis.
+        """
+        plt.figure(figsize=(10, 6))
+        plt.hist(self.numbers, bins=bins, edgecolor="black")
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True, which="both", linestyle="--", linewidth=0.5)
+        plt.show()
