@@ -49,6 +49,7 @@ class EstatisticaDescritiva:
         product = math.prod(self.numbers)
         n = len(self.numbers)
         geometric_mean = product ** (1 / n)
+        geometric_mean = round(geometric_mean, 3)
         print(
             f"Cálculo da média geométrica:\n1. Produto dos números: {product}\n2. Quantidade de números: {n}\n3. Média geométrica: {geometric_mean}"
         )
@@ -184,8 +185,9 @@ class EstatisticaDescritiva:
         skewness = (n / ((n - 1) * (n - 2))) * sum(
             ((x - mean) / std_dev) ** 3 for x in self.numbers
         )
-
-        return print(f"Cálculo da assimetria: {round(skewness, 3)}")
+        skewness = round(skewness, 3)
+        print(f"Cálculo da assimetria: {skewness}")
+        return skewness
 
     def histogram(
         self, bins=10, title="Histograma", xlabel="Valores", ylabel="Frequência"
@@ -206,3 +208,28 @@ class EstatisticaDescritiva:
         plt.ylabel(ylabel)
         plt.grid(True, which="both", linestyle="--", linewidth=0.5)
         plt.show()
+
+    def trimmed_mean(self, proportion=0.1):
+        """
+        Calculates the trimmed mean of the numbers by removing the specified proportion
+        of the smallest and largest values.
+
+        Parameters:
+            proportion (float): The proportion of values to remove from each end of the sorted list.
+
+        Returns:
+            float: The trimmed mean of the numbers.
+        """
+        n = len(self.numbers)
+        trim_count = int(n * proportion)
+
+        # the number of values to trim should never exceed the length of the list
+        if trim_count * 2 >= n:
+            # garantee that the list will not be empty
+            raise ValueError("Proporção de corte resulta em lista vazia ou inválida.")
+
+        trimmed_list = self.numbers[trim_count:-trim_count]
+
+        trimmed_mean = sum(trimmed_list) / len(trimmed_list)
+
+        return trimmed_mean

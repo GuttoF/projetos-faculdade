@@ -1,41 +1,55 @@
 import unittest
-
 from EstatisticaDescritiva import EstatisticaDescritiva
 
-
 class TestEstatisticaDescritiva(unittest.TestCase):
+
     def setUp(self):
-        self.numbers = [5, 4, 3, 2, 1]
+        self.numbers = [10, 11, 12, 20, 21, 22, 55, 44, 33, 22]
         self.stats = EstatisticaDescritiva(self.numbers)
 
     def test_order_list(self):
-        ordered_list = self.stats.order_list()
-        self.assertEqual(ordered_list, [1, 2, 3, 4, 5])
+        expected_result = [10, 11, 12, 20, 21, 22, 22, 33, 44, 55]
+        self.assertEqual(self.stats.order_list(), expected_result)
+
+    def test_semi_range(self):
+        expected_result = 22.5
+        self.assertEqual(self.stats.semi_range(), expected_result)
+
+    def test_geometric_mean(self):
+        expected_result = 21.533
+        self.assertAlmostEqual(self.stats.geometric_mean(), expected_result, places=3)
 
     def test_mean(self):
-        mean = self.stats.mean()
-        self.assertEqual(mean, 3)
+        expected_result = 25.0
+        self.assertEqual(self.stats.mean(), expected_result)
 
     def test_median(self):
-        median = self.stats.median()
-        self.assertEqual(median, 3)
+        expected_result = 21.5
+        self.assertEqual(self.stats.median(), expected_result)
 
     def test_mode(self):
-        mode = self.stats.mode()
-        self.assertEqual(mode, [1, 2, 3, 4, 5])
+        expected_result = [22]
+        self.assertEqual(self.stats.mode(), expected_result)
 
     def test_variance(self):
-        variance = self.stats.variance()
-        self.assertEqual(variance, 2)
+        expected_result = 197.4
+        self.assertAlmostEqual(self.stats.variance(), expected_result, places=3)
 
     def test_std(self):
-        std = self.stats.std()
-        self.assertEqual(std, 1.4142135623730951)
+        expected_result = 14.05
+        self.assertAlmostEqual(self.stats.std(), expected_result, places=3)
 
     def test_symmetry(self):
-        symmetry = self.stats.symmetry()
-        self.assertEqual(symmetry, "A distribuição pode não ser claramente simétrica ou assimétrica.")
+        expected_result = "A distribuição pode não ser claramente simétrica ou assimétrica."
+        self.assertEqual(self.stats.symmetry(), expected_result)
 
+    def test_skewness(self):
+        expected_result = 1.293
+        self.assertAlmostEqual(self.stats.skewness(), expected_result, places=3)
 
-if __name__ == "__main__":
+    def test_trimmed_mean(self):
+        expected_result = 23.125
+        self.assertEqual(self.stats.trimmed_mean(), expected_result)
+
+if __name__ == '__main__':
     unittest.main()
