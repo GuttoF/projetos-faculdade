@@ -128,6 +128,39 @@ class EstatisticaDescritiva:
         description = f"1. Variância: {list_var}\n2. Desvio padrão (raiz quadrada da variância): {list_std}"
         print("Cálculo do desvio padrão:\n" + description)
         return list_std
+    
+    def coefficient_of_variation(self):
+        """
+        Calculates the coefficient of variation of the numbers.
+
+        Returns:
+            float: The coefficient of variation of the numbers, expressed as a percentage.
+        """
+        mean = self.mean()  # Reutilizando a função de média.
+        std_dev = self.std()  # Reutilizando a função de desvio padrão.
+        if mean == 0:
+            raise ValueError("A média é zero, o coeficiente de variação não pode ser calculado.")
+        cv = (std_dev / mean) * 100
+        cv = round(cv, 3)  # Arredondando para 3 casas decimais para consistência.
+        description = f"1. Média dos números: {mean}\n2. Desvio padrão: {std_dev}\n3. Coeficiente de variação: {cv}%"
+        print("Cálculo do coeficiente de variação:\n" + description)
+        return cv
+   
+
+    def mean_absolute_deviation(self):
+        """
+        Calculates the mean absolute deviation of the numbers.
+
+        Returns:
+            float: The mean absolute deviation of the numbers.
+        """
+        mean = self.mean()  # Reutilizando a função de média já definida na classe.
+        deviations = [abs(x - mean) for x in self.numbers]
+        mad = sum(deviations) / len(self.numbers)
+        mad = round(mad, 3)  # Arredondando para 3 casas decimais para consistência.
+        description = f"1. Média dos números: {mean}\n2. Desvios absolutos: {deviations}\n3. Desvio absoluto médio: {mad}"
+        print("Cálculo do desvio absoluto médio:\n" + description)
+        return mad
 
     def symmetry(self):
         """
